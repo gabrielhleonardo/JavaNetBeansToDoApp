@@ -6,7 +6,7 @@ package view;
 
 import controller.ProjectController;
 import controller.TaskController;
-import java.awt.Color;
+import java.awt.Color;  
 import java.awt.Font;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import model.Project;
 import model.Task;
+import util.DeadlineColumnCellRenderer;
 import util.TaskTableModel;
 
 /**
@@ -36,10 +37,12 @@ public class MainScreen extends javax.swing.JFrame {
     
     public MainScreen() {
         initComponents();
-        decorateTableTasks();
+        
         
         initDataController();
         initComponentsModel();
+        
+        decorateTableTasks();
     }
 
     /**
@@ -458,6 +461,8 @@ public class MainScreen extends javax.swing.JFrame {
         jTableTasks.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         jTableTasks.getTableHeader().setBackground(new Color(0,153,102));
         jTableTasks.getTableHeader().setForeground(new Color(255,255,255));
+        jTableTasks.getColumnModel().getColumn(2)
+                .setCellRenderer(new DeadlineColumnCellRenderer());
         
         //Criando um sort automatico para as colunas 
         jTableTasks.setAutoCreateRowSorter(true);
