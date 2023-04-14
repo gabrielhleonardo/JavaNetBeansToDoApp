@@ -163,7 +163,13 @@ public class TaskDialogueScreen extends javax.swing.JDialog {
         // TODO add your handling code here:
         
         try {
-            //Criar Tarefa   
+            if(jTextFieldName.getText().isEmpty() ||
+                    jFormattedTextFieldDeadLineDate.getText().isEmpty()){
+                JOptionPane.showMessageDialog(rootPane, "Campo Nome e"
+                        + " Prazo obrigatórios ");
+                
+            }else{
+                //Criar Tarefa   
             Task task = new Task();
             
             task.setIdProject(project.getId());
@@ -182,12 +188,14 @@ public class TaskDialogueScreen extends javax.swing.JDialog {
             controller.save(task);
             
             JOptionPane.showMessageDialog(rootPane, "Tarefa salva com sucesso");
+            this.dispose();
+            }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
         
-        this.dispose();
+        
     }//GEN-LAST:event_jLabelToolBarSaveMouseClicked
 
     /**
